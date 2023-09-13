@@ -75,9 +75,11 @@ VALUES (7, 'Firehouse Pizza', '3.9'),
 ```
 ![image](https://github.com/Crack22/db_practice/assets/93242683/40fc90e9-910b-4b72-8597-15b065f00e8f)
 
-## Task 2
+## Task 2 
+```
 SELECT (name, age)
 FROM person WHERE address = 'Samara'
+```
 ![image](https://github.com/Crack22/db_practice/assets/93242683/b292ab4f-9fea-485f-a5bc-a5af0de1f429)
 
 
