@@ -97,7 +97,7 @@ SELECT "name", "rating" FROM "pizzeria" WHERE "rating" BETWEEN 3.5 AND 5 OR "rat
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/274f21ef-ca44-4d77-a3b8-edff8b4dd1ff)
 
-## Task 5
+## Task 5 Make a select statement which returns the person's identifiers
 
 ```
 SELECT DISTINCT person_id FROM person_visits
@@ -105,7 +105,7 @@ WHERE visit_date BETWEEN '2022-01-02' AND '2022-01-09'
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/76f97650-f86d-4736-bbc7-acd41fba982c)
 
-## Task 6 
+## Task 6 Make a select statement which returns person's names
 
 ```
 SELECT name FROM person WHERE id IN 
@@ -115,7 +115,7 @@ SELECT name FROM person WHERE id IN
 
 
 
-## Task 7
+## Task 7  Make a select to person table that returning (true or false) if person_name
 ```
 SELECT EXISTS (SELECT * FROM "person" WHERE "name" = 'Anna') AS results
 ```
