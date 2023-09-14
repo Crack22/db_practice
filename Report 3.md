@@ -75,11 +75,41 @@ VALUES (7, 'Firehouse Pizza', '3.9'),
 ```
 ![image](https://github.com/Crack22/db_practice/assets/93242683/40fc90e9-910b-4b72-8597-15b065f00e8f)
 
-## Task 2 
+## Task 2 Make a select statement which returns all person's names and person's ages from the city
 ```
 SELECT (name, age)
 FROM person WHERE address = 'Samara'
 ```
 ![image](https://github.com/Crack22/db_practice/assets/93242683/b292ab4f-9fea-485f-a5bc-a5af0de1f429)
+
+## Task 3 Make a select statement which returns names , ages for all women from the city
+
+```
+SELECT ("name", "age", "address")
+FROM "person" WHERE "gender" = 'female' and "address" = 'Kazan'
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/940eb501-4e95-4aa5-a7dc-56845f765de2)
+
+## Task 4 Make 2 syntax different select statements which return a list of pizzerias with rating between 3.5 and 5 points
+
+```
+SELECT "name", "rating" FROM "pizzeria" WHERE "rating" BETWEEN 3.5 AND 5 OR "rating" > 3.5 
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/274f21ef-ca44-4d77-a3b8-edff8b4dd1ff)
+
+## Task 5
+
+
+
+
+
+
+
+## Task 6
+```
+SELECT EXISTS (SELECT * FROM "person" WHERE "name" = 'Anna') AS results
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/edc55bde-fb1a-4317-8cfd-9f199798ff81)
+
 
 
