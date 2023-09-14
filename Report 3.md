@@ -99,13 +99,23 @@ SELECT "name", "rating" FROM "pizzeria" WHERE "rating" BETWEEN 3.5 AND 5 OR "rat
 
 ## Task 5
 
+```
+SELECT DISTINCT person_id FROM person_visits
+WHERE visit_date BETWEEN '2022-01-02' AND '2022-01-09'
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/76f97650-f86d-4736-bbc7-acd41fba982c)
+
+## Task 6 
+
+```
+SELECT name FROM person WHERE id IN 
+(SELECT id FROM person_visits WHERE visit_date = '2022-01-02' OR visit_date = '2022-01-03' OR visit_date = '2022-01-04')
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/b301e295-285d-488d-9a69-9cd9db6422b0)
 
 
 
-
-
-
-## Task 6
+## Task 7
 ```
 SELECT EXISTS (SELECT * FROM "person" WHERE "name" = 'Anna') AS results
 ```
