@@ -17,9 +17,26 @@ SELECT name, 'person' AS source FROM person ORDER BY source,pizza_name
 ![image](https://github.com/necessary22/db_practice/assets/93242683/7b37a397-82e9-457c-865f-5d556374e7f8)
 
 ## Task 3
+```
+SELECT "person_id" FROM "person_order" 
+WHERE "order_date"
+IN (SELECT "visit_date" FROM "person_visits" WHERE person_order.person_id = person_visits.person_id)
+ORDER BY "order_date" DESC
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/03403824-6406-41d9-b6c3-9b59bfd9a837)
+
+## Task 4 
+```
+SELECT ABS (
+(SELECT COUNT(person_id) FROM person_order WHERE order_date = '2022-01-07') 
+-
+(SELECT COUNT(person_id) FROM person_visits WHERE visit_date = '2022-01-07')
+)
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/dcd7a1be-5d2c-4463-8392-f415462d7006)
 
 ## asd
-Please write a SQL statement which returns common rows for attributes 
+3.Please write a SQL statement which returns common rows for attributes 
 order_date, person_id from person_order table from one side and visit_date, 
 person_id from person_visits table from the other side (please see a sample 
 below). In other words, let’s find identifiers of persons, who visited and 
