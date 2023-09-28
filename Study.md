@@ -1,3 +1,94 @@
+## Student
+```
+CREATE TABLE Students (
+    StudentID SERIAL PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT
+);
+
+CREATE TABLE Courses (
+    CourseID SERIAL PRIMARY KEY,
+    CourseName VARCHAR(100)
+);
+
+CREATE TABLE StudentCourses (
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+INSERT INTO Students (FirstName, LastName, Age) VALUES
+('Иван', 'Иванов', 20),
+('Петр', 'Петров', 22),
+('Мария', 'Сидорова', 21),
+('Анна', 'Козлова', 23),
+('Сергей', 'Смирнов', 20),
+('Елена', 'Смирнова', 19),
+('Алексей', 'Ковалев', 24),
+('Ольга', 'Петрова', 22),
+('Денис', 'Соколов', 21),
+('Татьяна', 'Иванова', 25),
+('Андрей', 'Попов', 20),
+('Надежда', 'Морозова', 23),
+('Георгий', 'Лебедев', 22),
+('Екатерина', 'Волкова', 24),
+('Максим', 'Семенов', 21),
+('Светлана', 'Григорьева', 19),
+('Артем', 'Николаев', 25),
+('Маргарита', 'Козлова', 22),
+('Сергей', 'Медведев', 23),
+('Юлия', 'Павлова', 20),
+('Анастасия', 'Сорокина', 17),
+('Дмитрий', 'Лебедев', 17);
+
+INSERT INTO Courses (CourseName) VALUES
+('Математика'),
+('История'),
+('Биология'),
+('Информатика'),
+('География'),
+('Литература'),
+('Физика'),
+('Химия'),
+('Экономика'),
+('Психология'),
+('Иностранный язык'),
+('Искусство'),
+('Философия'),
+('Спорт'),
+('Музыка'),
+('Политика'),
+('Религия'),
+('Театр'),
+('Астрономия');
+
+INSERT INTO StudentCourses (StudentID, CourseID) VALUES
+(1, 1),
+(2, 3),
+(3, 2),
+(4, 4),
+(5, 1),
+(1, 6),
+(2, 7),
+(3, 8),
+(4, 9),
+(5, 10),
+(6, 11),
+(7, 12),
+(8, 13),
+(9, 14),
+(10, 15),
+(11, 6),
+(12, 7),
+(13, 8),
+(14, 9),
+(15, 10);
+```
+
+
+## Pizza
 ```
 create table person
 ( id bigint primary key ,
@@ -160,3 +251,4 @@ action_date in ascending mode and then by person_id in descending mode.
 4. Please write a SQL statement which returns a difference (minus) of person_id 
 column values with saving duplicates between person_order table and 
 person_visits table for order_date and visit_date are for 7th of January of 2022
+
