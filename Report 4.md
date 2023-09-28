@@ -16,6 +16,7 @@ SELECT name, 'person' AS source FROM person ORDER BY source,pizza_name
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/7b37a397-82e9-457c-865f-5d556374e7f8)
 
+## Task 3
 
 ## asd
 Please write a SQL statement which returns common rows for attributes 
