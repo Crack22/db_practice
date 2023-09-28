@@ -31,3 +31,45 @@ WHERE studentid IN (SELECT studentid FROM studentcourses WHERE courseid = (SELEC
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/a0121078-f8af-4490-9a09-4df90eb3e17a)
 ## Task 6
+```
+SELECT c.coursename, COUNT(studentcourses.studentid) FROM courses c
+JOIN studentcourses ON studentcourses.courseid = c.courseid GROUP BY c.courseid
+
+```
+## Task 7 
+```
+SELECT AVG(age) AS AVGage FROM students
+```
+## Task 8 
+```
+SELECT s.firstname, s.lastname FROM students s 
+WHERE s.studentid NOT IN (SELECT sc.studentid FROM studentcourses sc)
+```
+## Task 9 
+```
+SELECT c.coursename, COUNT(studentcourses.studentid) FROM courses c
+LEFT JOIN studentcourses ON studentcourses.courseid = c.courseid GROUP BY c.courseid
+```
+## Task 10 
+```
+SELECT firstname, lastname FROM students
+WHERE studentid IN (SELECT studentid FROM studentcourses WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Биология' AND  age <= 22))
+```
+## Задания на 5
+## Task 1 
+```
+SELECT c.coursename, COUNT(sc.studentid) FROM courses c 
+JOIN studentcourses sc ON sc.courseid = c.courseid
+GROUP BY c.courseid 
+HAVING count(sc.studentid) >2
+```
+## Task 8
+```
+SELECT courseid, AVG(age) AS AVGage FROM students, courses WHERE courseid = (SELECT courseid FROM courses WHERE coursename = 'Биология')
+GROUP BY courses.courseid
+```
+## Task 9
+```
+SELECT s.firstname, s.lastname FROM students s 
+WHERE s.studentid NOT IN (SELECT sc.studentid FROM studentcourses sc ) AND age > 18
+```
