@@ -50,5 +50,24 @@ SELECT * FROM v_symmetric_union
 
 ## Task 5 Please create a Database View v_price_with_discount that returns a person's orders with person names, pizza names, real price and calculated column discount_price (with applied 10% discount and satisfies formula price - price*0.1).
 ```
+CREATE VIEW v_price_with_discount AS (
+	SELECT pizza_name, p.name, m.price,(m.price * 0.9) AS discount_price FROM person_order po
+	JOIN person p ON p.id = po.person_id
+	JOIN menu m ON m.id = po.menu_id
+)
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/c46e0215-e396-4c31-a131-7f33f59a0afa)
+
+## Task 6 Please create a Materialized View mv_dmitriy_visits_and_eats (with data included) based on SQL statement that finds the name of pizzeria Dmitriy visited on January 8, 2022 and could eat pizzas for less than 800 rubles 
 
 ```
+CREATE MATERIALIZED VIEW mv_dmitriy_visits_and_eats AS (
+	SELECT p.name FROM pizzeria p
+	JOIN person_visits pv ON p.id = pv.pizzeria_id
+	JOIN person pr ON pv.person_id = pr.id
+	JOIN menu m ON m.pizzeria_id = pv.pizzeria_id 
+	WHERE pr.name = 'Dmitriy' AND pv.visit_date = '2022-01-08' AND price <= '800'  
+)
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/a2e999f9-d330-458a-8b2b-90d7a6e359f6)
+
