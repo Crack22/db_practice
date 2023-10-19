@@ -39,7 +39,7 @@ ORDER BY c.customer_id
 ```
 SELECT category, AVG(price) AS avg_price FROM products
 GROUP BY category
-ORDER BY avg_price ASC;
+ORDER BY avg_price;
 
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/05f1a389-9e18-4c86-8240-9aa3ee012bad)
