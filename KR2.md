@@ -8,7 +8,8 @@ HAVING COUNT (c.customer_id) > 2 AND o.order_date BETWEEN '2023-07-18' and '2023
 
 
 ```
-![image](https://github.com/necessary22/db_practice/assets/93242683/c49e8c26-bd48-462b-a36e-4290dafc00ae)
+![image](https://github.com/necessary22/db_practice/assets/93242683/fb18cc17-1c46-4437-a649-e8586920ef87)
+
 
 ## Task 2 Найти средний размер заказа для каждой категории товаров, исключая категории, в которых есть товары с ценой менее $50.
 ```
@@ -17,43 +18,32 @@ HAVING COUNT (c.customer_id) > 2 AND o.order_date BETWEEN '2023-07-18' and '2023
 
 ## Task 3  Получить список клиентов, у которых суммарная стоимость всех заказов выше средней стоимости заказа в системе.
 ```
+WITH sumas AS (SELECT p.product_id,SUM(p.price) AS suma FROM products p
+					 GROUP BY p.product_id, p.price
+),
+avg_suma AS (SELECT AVG(p.price) AS sms  FROM products p
+)
 
+SELECT c.first_name, c.customer_id from customers c 
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN sumas s ON s.product_id = o.product_id
+WHERE s.suma > (SELECT avgs.sms FROM avg_suma avgs)
+GROUP BY c.first_name, c.customer_id
+ORDER BY c.customer_id
 ```
+![image](https://github.com/necessary22/db_practice/assets/93242683/122c99aa-8d3a-4c0e-84c9-94e91791a8cc)
 
-## Task 4 Найти клиентов, которые сделали заказы на сумму более $1000 и при этом не делали заказы в категории "Электроника"
-```
-
-```
-
-## Task 5 Создать VIEW, который показывает среднюю стоимость заказа для каждого клиента, а также отклонение этой стоимости от средней стоимости заказа в системе.
-```
-
-```
-
-## Task 6 Найти клиента, у которого самый долгий период между двумя последними заказами
-```
-
-```
-
-## Task 7 Получить список клиентов, у которых суммарная стоимость всех заказов увеличилась в последние два месяца.
-```
-
-```
-
-## Task 8 Обновить столбец price в таблице Products таким образом, чтобы он отражал новую цену товара с учетом скидки 10% на все товары в категории "Одежда".
-```
-
-```
 
 ## Task 9  Найти категорию товаров с самой высокой средней ценой, и категорию с самой низкой средней ценой.
-```
 
 ```
+SELECT category, AVG(price) AS avg_price FROM products
+GROUP BY category
+ORDER BY avg_price ASC;
 
-## Task 10 Удалить все заказы, в которых количество товаров превышает среднее количество товаров в заказах.
 ```
+![image](https://github.com/necessary22/db_practice/assets/93242683/05f1a389-9e18-4c86-8240-9aa3ee012bad)
 
-```
 
 # Database
 ```
