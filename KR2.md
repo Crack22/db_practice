@@ -10,12 +10,6 @@ HAVING COUNT (c.customer_id) > 2 AND o.order_date BETWEEN '2023-07-18' and '2023
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/fb18cc17-1c46-4437-a649-e8586920ef87)
 
-
-## Task 2 Найти средний размер заказа для каждой категории товаров, исключая категории, в которых есть товары с ценой менее $50.
-```
-
-```
-
 ## Task 3  Получить список клиентов, у которых суммарная стоимость всех заказов выше средней стоимости заказа в системе.
 ```
 WITH sumas AS (SELECT p.product_id,SUM(p.price) AS suma FROM products p
@@ -33,6 +27,43 @@ ORDER BY c.customer_id
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/122c99aa-8d3a-4c0e-84c9-94e91791a8cc)
 
+## Task 4
+```
+SELECT c.first_name, c.last_name, c.email FROM customers c
+JOIN orders o ON o.customer_id = c.customer_id
+JOIN products p ON p.product_id = o.product_id
+WHERE p.price > 1000 AND p.category != 'Electronics';
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/f5ef05b4-de6f-488a-a6db-430cf1d4d623)
+
+## Task 6
+```
+WITH customer_max_min AS (
+	SELECT o.customer_id, MAX(o.order_date) AS max_date, MIN(o.order_date) AS min_date FROM orders o
+	GROUP BY o.customer_id
+), 
+range_max_min AS(
+	SELECT cusmm.customer_id, (cusmm.max_date - cusmm.min_date) AS range FROM customer_max_min cusmm
+),
+
+max_p  AS (
+	SELECT cus.first_name, cus.last_name,cus.customer_id, MAX(o.order_date), MIN(o.order_date), MAX(rgmm.range) AS all_mm FROM orders o
+	JOIN range_max_min rgmm ON rgmm.customer_id = o.customer_id
+	JOIN customers cus ON cus.customer_id = o.customer_id
+	GROUP BY cus.first_name, cus.last_name, cus.customer_id
+)
+
+SELECT first_name, last_name, customer_id FROM max_p WHERE all_mm = (SELECT MAX(all_mm) FROM max_p);
+
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/3109b5e4-9138-4174-b8c5-7111f10064cf)
+
+## Task 8 
+```
+SELECT category, p.price, (p.price * 0.9) AS dis_price FROM products p
+WHERE category = 'Clothing'
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/4e7c19b9-99ce-48fb-8968-404135dc2fd8)
 
 ## Task 9  Найти категорию товаров с самой высокой средней ценой, и категорию с самой низкой средней ценой.
 
