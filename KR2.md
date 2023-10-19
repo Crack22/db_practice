@@ -5,10 +5,17 @@ SELECT c.first_name,c.customer_id FROM customers c
 JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id,o.order_date
 HAVING COUNT (c.customer_id) > 2 AND o.order_date BETWEEN '2023-07-18' and '2023-10-18'
-
-
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/fb18cc17-1c46-4437-a649-e8586920ef87)
+
+## Task 2 Найти средний размер заказа для каждой категории товаров, исключая категории, в которых есть товары с ценой менее $50
+```
+SELECT p.category, FLOOR (avg(o.quantity)) AS "averege order size" FROM orders o
+JOIN products p ON p.product_id = o.product_id
+WHERE p.price >= 50  
+GROUP BY p.category
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/57c2a8cc-c349-49ea-96a6-6ff842da3101)
 
 ## Task 3  Получить список клиентов, у которых суммарная стоимость всех заказов выше средней стоимости заказа в системе.
 ```
@@ -27,7 +34,7 @@ ORDER BY c.customer_id
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/122c99aa-8d3a-4c0e-84c9-94e91791a8cc)
 
-## Task 4
+## Task 4 Найти клиентов, которые сделали заказы на сумму более $1000 и при этом не делали заказы в категории "Электроника".
 ```
 SELECT c.first_name, c.last_name, c.email FROM customers c
 JOIN orders o ON o.customer_id = c.customer_id
@@ -36,7 +43,7 @@ WHERE p.price > 1000 AND p.category != 'Electronics';
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/f5ef05b4-de6f-488a-a6db-430cf1d4d623)
 
-## Task 6
+## Task 6 Найти клиента, у которого самый долгий период между двумя последними заказами.
 ```
 WITH customer_max_min AS (
 	SELECT o.customer_id, MAX(o.order_date) AS max_date, MIN(o.order_date) AS min_date FROM orders o
@@ -58,7 +65,7 @@ SELECT first_name, last_name, customer_id FROM max_p WHERE all_mm = (SELECT MAX(
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/3109b5e4-9138-4174-b8c5-7111f10064cf)
 
-## Task 8 
+## Task 8  Обновить столбец price в таблице Products таким образом, чтобы он отражал новую цену товара с учетом скидки 10% на все товары в категории "Одежда"
 ```
 SELECT category, p.price, (p.price * 0.9) AS dis_price FROM products p
 WHERE category = 'Clothing'
