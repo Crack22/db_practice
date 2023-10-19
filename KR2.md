@@ -43,6 +43,42 @@ WHERE p.price > 1000 AND p.category != 'Electronics';
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/f5ef05b4-de6f-488a-a6db-430cf1d4d623)
 
+## Task 5
+```
+WITH sum_orders AS (
+	SELECT SUM(o.quantity * p.price) AS sum_of_orders, c.first_name FROM orders o
+	JOIN products p ON o.product_id = p.product_id
+	JOIN customers c ON o.customer_id = c.customer_id
+	GROUP BY c.first_name
+),
+
+count_orders AS (
+	SELECT c.first_name, COUNT(o.customer_id) AS count_of_orders FROM orders o
+	JOIN customers c ON o.customer_id = c.customer_id
+	GROUP BY c.first_name
+),
+
+avg_cost_of_order AS (
+	SELECT sum_of_orders / count_of_orders AS avg_order_cost, sum_orders.first_name FROM sum_orders
+	JOIN count_orders ON count_orders.first_name = sum_orders.first_name
+),
+
+amount_of_orders AS (
+	SELECT COUNT(*) FROM orders
+),
+
+sum_order AS (
+	SELECT SUM(sum_of_orders) FROM sum_orders
+),
+
+avg_cost_of_one_order AS (
+	SELECT ((SELECT * FROM sum_order) / (SELECT * FROM  amount_of_orders)) AS col
+)
+
+SELECT avg_cost_of_order.first_name, avg_cost_of_order.avg_order_cost, (avg_cost_of_order.avg_order_cost - (SELECT * FROM avg_cost_of_one_order)) AS otclon  FROM avg_cost_of_order
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/441645cc-0782-40e5-b3c9-e09bc4015236)
+
 ## Task 6 Найти клиента, у которого самый долгий период между двумя последними заказами.
 ```
 WITH customer_max_min AS (
@@ -81,6 +117,16 @@ ORDER BY avg_price;
 
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/05f1a389-9e18-4c86-8240-9aa3ee012bad)
+
+## Task 10
+```
+WITH avg_quantity AS (
+	SELECT ROUND(AVG(quantity)) FROM orders
+)
+
+DELETE FROM orders WHERE quantity > (SELECT * FROM avg_quantity);
+```
+![image](https://github.com/necessary22/db_practice/assets/93242683/d0854aad-a5c2-4106-99c5-22905b5cf621)
 
 
 # Database
