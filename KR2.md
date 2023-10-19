@@ -1,10 +1,11 @@
 18.10.23
 ## Task 1 Найти клиентов, сделавших более двух заказов в течение последних трех месяцев.
 ```
-SELECT c.first_name, c.last_name FROM customers c
+SELECT c.first_name,c.customer_id FROM customers c
 JOIN orders o ON c.customer_id = o.customer_id
-ORDER BY c.customer_id, o.order_date
-COUNT (c.cutomer_id) >= 2
+GROUP BY c.customer_id,o.order_date
+HAVING COUNT (c.customer_id) > 2 AND o.order_date BETWEEN '2023-07-18' and '2023-10-18'
+
 
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/c49e8c26-bd48-462b-a36e-4290dafc00ae)
