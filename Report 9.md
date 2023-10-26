@@ -8,7 +8,8 @@ ORDER BY count_of_visits DESC, p.id ASC
 ![image](https://github.com/necessary22/db_practice/assets/93242683/124f820f-503f-495e-a0ed-20af4cfecfad)
 
 ## Task 2 Please change a SQL statement from Exercise 00 and return a person name (not identifier). Additional clause is we need to see only top-4 persons with maximal visits in any pizzerias and sorted by a person name. Please take a look at the example of output data below.
-```
+
+```sql
 WITH tmp AS (
 	SELECT p.name, (SELECT COUNT(pv.id) FROM person_visits pv WHERE pv.person_id = p.id) AS "count_of_visits" FROM person p
 	ORDER BY count_of_visits DESC LIMIT 4
