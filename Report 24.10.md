@@ -19,4 +19,4 @@ SELECT name FROM tmp ORDER BY name
 ```
 ![image](https://github.com/necessary22/db_practice/assets/93242683/d3802075-3818-4428-9644-3d54572d8e4c)
 
-## Task 3 
+
